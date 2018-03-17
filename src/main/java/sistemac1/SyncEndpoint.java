@@ -20,16 +20,18 @@ public class SyncEndpoint {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void receive(String data) {
-		System.out.println("-----------------------------------");
-		JSONArray jsonarray = new JSONArray(data);
-		System.out.println("Ordenes finales: "+jsonarray.length());
-		
-		JSONObject primeraOrden = jsonarray.getJSONObject(0);
-		System.out.println("Ordenes totales: "+primeraOrden.getString("orderset"));
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		
 		try {
+			
+			System.out.println("-----------------------------------");
+			JSONArray jsonarray = new JSONArray(data);
+			System.out.println("Ordenes finales: "+jsonarray.length());
+			
+			JSONObject primeraOrden = jsonarray.getJSONObject(0);
+			System.out.println("Ordenes totales: "+primeraOrden.getString("orderset"));
+			
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		
+		
 			
 			Date orderCreationDate = dateFormat.parse(primeraOrden.getString("date"));
 			Date now = new Date();
@@ -51,8 +53,15 @@ public class SyncEndpoint {
 		
 		System.out.println("-----------------------------------");
 		
-		System.out.println(data);
+		consolePrint(data);
 		
+	}
+	
+	public void consolePrint(String s){
+		if (s.length() > 100)
+		    System.out.println(s.substring(0, 100) + "...");
+		else
+			System.out.println(s);
 	}
 
 }
