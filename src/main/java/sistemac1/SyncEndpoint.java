@@ -28,7 +28,7 @@ public class SyncEndpoint {
 			
 			JSONObject primeraOrden = jsonarray.getJSONObject(0);
 			System.out.println(primeraOrden.toString());
-			System.out.println("Ordenes totales: "+primeraOrden.getString("orderset"));
+			System.out.println("Ordenes totales: "+primeraOrden.getInt("orderset"));
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		
@@ -43,7 +43,7 @@ public class SyncEndpoint {
 			long timeRateSubtotal = jsonarray.length()/timelapsed;
 			System.out.println("Ordenes finales/Tiempo: "+timeRateSubtotal+ " ordenes/s");
 
-			long timeRateTotal = Integer.parseInt(primeraOrden.getString("orderset"))/timelapsed;
+			long timeRateTotal = primeraOrden.getInt("orderset")/timelapsed;
 			System.out.println("Ordenes totales/Tiempo: "+timeRateTotal+ " ordenes/s");
 			
 			
