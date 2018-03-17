@@ -37,8 +37,13 @@ public class SyncEndpoint {
 			Date orderCreationDate = dateFormat.parse(primeraOrden.getString("date"));
 			Date now = new Date();
 			
-			long timelapsed = (now.getTime() - orderCreationDate.getTime())/1000;
-			System.out.println("Tiempo de flujo de SI: "+timelapsed+ "ms");
+			long timelapsedms =  (now.getTime() - orderCreationDate.getTime());
+			long timelapsed = timelapsedms/1000;
+			
+			System.out.println("Tiempo de flujo de SI: "+timelapsedms+ "ms");
+			
+			if (timelapsed == 0) 
+				timelapsed = 1; //previene los devide by zero
 			
 			long timeRateSubtotal = jsonarray.length()/timelapsed;
 			System.out.println("Ordenes finales/Tiempo: "+timeRateSubtotal+ " ordenes/s");
