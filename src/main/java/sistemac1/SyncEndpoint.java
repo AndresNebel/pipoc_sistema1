@@ -27,6 +27,7 @@ public class SyncEndpoint {
 			System.out.println("Ordenes finales: "+jsonarray.length());
 			
 			JSONObject primeraOrden = jsonarray.getJSONObject(0);
+			System.out.println(primeraOrden.toString());
 			System.out.println("Ordenes totales: "+primeraOrden.getString("orderset"));
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
