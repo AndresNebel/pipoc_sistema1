@@ -24,15 +24,14 @@ public class SyncEndpoint {
 			
 			System.out.println("-----------------------------------");
 			JSONArray jsonarray = new JSONArray(data);
-			System.out.println("Ordenes finales: "+jsonarray.length());
+			System.out.println("Ordenes que llegaron a C1 (luego de filtro): "+jsonarray.length());
 			
 			JSONObject primeraOrden = jsonarray.getJSONObject(0);
 			System.out.println(primeraOrden.toString());
-			System.out.println("Ordenes totales: "+primeraOrden.getInt("orderset"));
+			System.out.println("Ordenes totales procesadas (antes de filtro): "+primeraOrden.getInt("orderset"));
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		
-		
+				
 			
 			Date orderCreationDate = dateFormat.parse(primeraOrden.getString("date"));
 			Date now = new Date();
@@ -45,8 +44,8 @@ public class SyncEndpoint {
 			if (timelapsed == 0) 
 				timelapsed = 1; //previene los devide by zero
 			
-			long timeRateSubtotal = jsonarray.length()/timelapsed;
-			System.out.println("Ordenes finales/Tiempo: "+timeRateSubtotal+ " ordenes/s");
+			//long timeRateSubtotal = jsonarray.length()/timelapsed;
+			//System.out.println("Ordenes finales/Tiempo: "+timeRateSubtotal+ " ordenes/s");
 
 			long timeRateTotal = primeraOrden.getInt("orderset")/timelapsed;
 			System.out.println("Ordenes totales/Tiempo: "+timeRateTotal+ " ordenes/s");
@@ -59,7 +58,7 @@ public class SyncEndpoint {
 		
 		System.out.println("-----------------------------------");
 		
-		consolePrint(data);
+		//consolePrint(data);
 		
 	}
 	
